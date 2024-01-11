@@ -1,0 +1,11 @@
+name: compendium_computational_environment
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - snakemake=7.18
+  - r=4.1
+  - r-tidyverse
+  - graphviz
