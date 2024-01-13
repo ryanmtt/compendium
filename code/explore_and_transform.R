@@ -46,19 +46,27 @@ dim(data)
 
 # we remove missing observations
 subset_data<-data[data$FFQ0016<12 & data$FFQ0017<12 & data$FFQ0018<12 & data$FFQ0019<12 & data$FFQ0020<12 & data$FFQ0022<12 & data$FFQ0027<12,]
+
+columns_to_keep <- c("SEQN","BMXBMI","RIAGENDR","INDFMPIR","FFQ0016","FFQ0017","FFQ0018","FFQ0019","FFQ0020","FFQ0022","FFQ0027")
+subset_data <- subset_data %>% select(all_of(columns_to_keep))
+
 subset_data <- subset_data %>%
   filter(!is.na(!!sym("BMXBMI")))
+subset_data <- subset_data %>% mutate(INCBIN= ifelse(INDFMPIR > 2, 1, 0))
+subset_data <- subset_data[complete.cases(subset_data$INCBIN), ]
+
+
+
 
 vec=c(0,mean(c(1,6)),mean(c(7,11)),12,mean(c(24,36)),52,104,mean(c(156,208)),mean(c(260,312)),365,730)
 
-subset_data <- subset(subset_data, select = -c(FFQ0021, FFQ0021A,FFQ0021B,FFQ0023,FFQ0023A,FFQ0023B,FFQ0024,FFQ0024A,FFQ0024B,FFQ0025,FFQ0025A,FFQ0025B,FFQ0026,FFQ0026A,FFQ0026B))
 
 
 which(colnames(subset_data) == "FFQ0016")
 which(colnames(subset_data) == "FFQ0027")
 
 
-for(i in 77:83)
+for(i in 5:11)
 {
   subset_data[,i]=as.factor(subset_data[,i])
 }
@@ -68,17 +76,15 @@ l_mapping <- list(FFQ0016= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' =
                   FFQ0020= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"), FFQ0022= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"),
                   FFQ0027= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"))
 
-col_to_revalue=colnames(subset_data[,77:83])
+col_to_revalue=colnames(subset_data[,5:11])
 
 
 for (col in col_to_revalue) {
   subset_data[[col]] <- dplyr::recode(subset_data[[col]], !!!l_mapping[[col]])
 }
 
-subset_data <- subset_data %>%
-  mutate(across(all_of(col_to_revalue), as.numeric))
 
-for(i in 77:83)
+for(i in 5:11)
 {
   subset_data[,i]=as.numeric(gsub("\"", "", as.character(subset_data[,i])))
 }

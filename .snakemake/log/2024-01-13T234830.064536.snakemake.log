@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job           count    min threads    max threads
+----------  -------  -------------  -------------
+clean_data        1              1              1
+total             1              1              1
+
+Select jobs to execute...
+
+[Sat Jan 13 23:48:30 2024]
+rule clean_data:
+    input: raw/BMI.csv, raw/DEMO_D.csv, raw/FFQRAW_D.csv
+    output: clean/finaldata.csv
+    jobid: 0
+    reason: Missing output files: clean/finaldata.csv
+    resources: tmpdir=/tmp
+
+[Sat Jan 13 23:48:32 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2024-01-13T234830.064536.snakemake.log

@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job           count    min threads    max threads
+----------  -------  -------------  -------------
+clean_data        1              1              1
+total             1              1              1
+
+Select jobs to execute...
+
+[Sat Jan 13 23:46:08 2024]
+rule clean_data:
+    input: raw/BMI.csv, raw/DEMO_D.csv, raw/FFQRAW_D.csv
+    output: clean/finaldata.csv
+    jobid: 0
+    reason: Missing output files: clean/finaldata.csv
+    resources: tmpdir=/tmp
+
+[Sat Jan 13 23:46:08 2024]
+Error in rule clean_data:
+    jobid: 0
+    input: raw/BMI.csv, raw/DEMO_D.csv, raw/FFQRAW_D.csv
+    output: clean/finaldata.csv
+
+RuleException:
+WorkflowError in line 12 of /home/AHDS_assessment2_2478688/Snakefile:
+Failed to open source file /home/AHDS_assessment2_2478688/explore_and_transform.R
+FileNotFoundError: [Errno 2] No such file or directory: '/home/AHDS_assessment2_2478688/explore_and_transform.R'
+  File "/home/AHDS_assessment2_2478688/Snakefile", line 12, in __rule_clean_data
+  File "/usr/miniconda3/envs/compendium_computational_environment/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-01-13T234608.004661.snakemake.log
