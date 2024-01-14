@@ -1,6 +1,5 @@
 name: compendium_computational_environment
 channels:
-  - bioconda
   - conda-forge
   - defaults
 dependencies:
@@ -8,4 +7,8 @@ dependencies:
   - snakemake=7.18
   - r=4.1
   - r-tidyverse
+  - r-dplyr
+  - r-mfp
+  - r-haven
+  - r-hexbin
   - graphviz

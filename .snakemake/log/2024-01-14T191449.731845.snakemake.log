@@ -1,0 +1,51 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+clean_data           1              1              1
+produce_plots        1              1              1
+total                3              1              1
+
+Select jobs to execute...
+
+[Sun Jan 14 19:14:50 2024]
+rule clean_data:
+    input: raw/BMI.csv, raw/DEMO_D.csv, raw/FFQRAW_D.csv
+    output: clean/finaldata.csv
+    jobid: 2
+    reason: Code has changed since last execution
+    resources: tmpdir=/tmp
+
+[Sun Jan 14 19:14:53 2024]
+Finished job 2.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Sun Jan 14 19:14:53 2024]
+rule produce_plots:
+    input: clean/finaldata.csv
+    output: visualisation/ggplot1.png, visualisation/ggplot2.png
+    jobid: 1
+    reason: Input files updated by another job: clean/finaldata.csv
+    resources: tmpdir=/tmp
+
+[Sun Jan 14 19:14:57 2024]
+Finished job 1.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Sun Jan 14 19:14:57 2024]
+localrule all:
+    input: visualisation/ggplot1.png, visualisation/ggplot2.png
+    jobid: 0
+    reason: Input files updated by another job: visualisation/ggplot2.png, visualisation/ggplot1.png
+    resources: tmpdir=/tmp
+
+[Sun Jan 14 19:14:57 2024]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2024-01-14T191449.731845.snakemake.log

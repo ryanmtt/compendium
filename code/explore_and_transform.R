@@ -71,6 +71,8 @@ for(i in 5:11)
   subset_data[,i]=as.factor(subset_data[,i])
 }
 
+# converting the factor levels into an approcimation of fruit by taking mean of each level:
+
 l_mapping <- list(FFQ0016= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"),FFQ0017= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"),
                   FFQ0018= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"), FFQ0019= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"),
                   FFQ0020= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"), FFQ0022= c('1' = "0", '2' = "3.5", '3' = "9",'4' = "12" ,'5' = "30",'6' = "52",'7' = "104",'8' = "182" ,'9' = "286",'10' = "365", '11' = "730"),
@@ -89,11 +91,9 @@ for(i in 5:11)
   subset_data[,i]=as.numeric(gsub("\"", "", as.character(subset_data[,i])))
 }
 
+# sum across all fruit types to get approx of total fruit consumed in a year by each individual:
+
 subset_data$fruit <- rowSums(subset_data[,c(col_to_revalue)])
-
-
-# subset(subset_data, select = -c(# col names of ones i want to remove)
-
 
 # save this subset_dataf in the clean directory in compendium
 subset_data %>% write_csv("clean/finaldata.csv")
