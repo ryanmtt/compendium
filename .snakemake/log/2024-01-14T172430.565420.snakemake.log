@@ -1,0 +1,36 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+run_shiny_app        1              1              1
+total                2              1              1
+
+Select jobs to execute...
+
+[Sun Jan 14 17:24:30 2024]
+rule run_shiny_app:
+    input: clean/finaldata.csv
+    output: visualisation/shiny_app.log
+    jobid: 3
+    reason: Missing output files: visualisation/shiny_app.log
+    resources: tmpdir=/tmp
+
+[Sun Jan 14 17:24:33 2024]
+Error in rule run_shiny_app:
+    jobid: 3
+    input: clean/finaldata.csv
+    output: visualisation/shiny_app.log
+    shell:
+        
+        set -e
+        R -e 'shiny::runApp("code/app.R")'
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-01-14T172430.565420.snakemake.log

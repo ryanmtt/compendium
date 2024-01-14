@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in rule all  in line 2 of /home/AHDS_assessment2_2478688/Snakefile:
+Missing input files for rule all:
+    affected files:
+        visualisation/shiny_app.log

@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+produce_plots        1              1              1
+total                1              1              1
+
+Select jobs to execute...
+
+[Sun Jan 14 00:19:51 2024]
+rule produce_plots:
+    input: clean/finaldata.csv
+    output: visualisation/ggplot1.png, visualisation/ggplot2.png
+    jobid: 0
+    reason: Missing output files: visualisation/ggplot1.png, visualisation/ggplot2.png
+    resources: tmpdir=/tmp
+
+[Sun Jan 14 00:19:55 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2024-01-14T001951.087565.snakemake.log

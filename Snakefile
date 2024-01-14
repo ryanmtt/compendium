@@ -1,4 +1,10 @@
 # Snakefile
+rule all:
+    input:
+        "visualisation/ggplot1.png",
+        "visualisation/ggplot2.png"
+
+
 input_files = ["raw/BMI.csv", "raw/DEMO_D.csv","raw/FFQRAW_D.csv"]
 
 
@@ -6,10 +12,11 @@ input_files = ["raw/BMI.csv", "raw/DEMO_D.csv","raw/FFQRAW_D.csv"]
 rule clean_data:
     input:
         input_files
-    output:
+    output: 
         "clean/finaldata.csv"
     script:
         "code/explore_and_transform.R"
+
 
 # Rule to produce plots
 rule produce_plots:
@@ -20,3 +27,4 @@ rule produce_plots:
         "visualisation/ggplot2.png"
     script:
         "code/plot.R"
+

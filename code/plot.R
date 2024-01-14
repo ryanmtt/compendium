@@ -1,14 +1,12 @@
 # Visualisation code 
 
 # load in transformed and cleaned data:
-library("tidyverse")
 library(dplyr)
 library(ggplot2)
 library(mfp)
 library(haven)
 library(tidyverse)
 library(hexbin)
-
 
 subset_data <- read.csv("clean/finaldata.csv")
 
